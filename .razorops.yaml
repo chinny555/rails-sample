@@ -4,7 +4,7 @@ tasks:
     - checkout
     - docker/build:
         image: test-demo
-        tags: ["${CI_COMMIT_SHA:0:8}", "latest", "${CI_REPO_BRANCH}"]
+        tags: ["${CI_COMMIT_SHA:256}", "latest", "${CI_REPO_BRANCH}"]
 
   rspec:
     runner:
@@ -24,7 +24,7 @@ tasks:
 
     - commands:
       - gem --version && ruby --version
-      - gem install bundler:3.4.10
+      - gem install bundler:2.4.10
       - bundle --version
 
     - run: bundle install --path vendor/bundle || bundle check
