@@ -3,8 +3,7 @@ tasks:
     steps:
     - checkout
     - docker/build:
-        image: my-ruby-app
-        tags: ["${CI_COMMIT_SHA:256}", "latest", "${CI_REPO_BRANCH}"]
+        image: my-ruby-app:latest
 
   rspec:
     runner:
