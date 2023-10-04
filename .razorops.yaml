@@ -3,7 +3,7 @@ tasks:
     steps:
     - checkout
     - docker/build:
-        image: test-demo
+        image: my-ruby-app
         tags: ["${CI_COMMIT_SHA:256}", "latest", "${CI_REPO_BRANCH}"]
 
   rspec:
