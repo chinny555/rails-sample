@@ -3,7 +3,7 @@ tasks:
     steps:
     - checkout
     - docker/build:
-        tags: my-ruby-app:latest
+        image: my-ruby-app:latest
         
   rspec:
     runner:
