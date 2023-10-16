@@ -34,5 +34,3 @@ tasks:
     - reports/junit:
       - rspec.xml
 
-    - run: docker logs postgres
-      when: on_fail
