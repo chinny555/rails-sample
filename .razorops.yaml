@@ -9,13 +9,6 @@ tasks:
     runner:
       containers:
       - image: razorci/ruby:3.2.2
-      - image: postgres:16
-        environment:
-        - POSTGRES_DB=sample_test
-        - POSTGRES_USER=root
-        - POSTGRES_PASSWORD=postgres
-        options:
-        - --name=postgres
     steps:
     - checkout
     - cache/pull:
