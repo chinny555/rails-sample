@@ -5,7 +5,6 @@ tasks:
     - docker/build:
         image: my-ruby-app:latest
 
-  rspec:
     runner:
       containers:
       - image: ruby:3.2.2
