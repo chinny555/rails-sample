@@ -9,12 +9,12 @@ tasks:
       containers:
       - image: ruby:3.2.2
        - image: postgres:9.6
-        environment:
-        - POSTGRES_DB=rails_sample_app_test
-        - POSTGRES_USER=root
-        - POSTGRES_PASSWORD=secret
-        options:
-        - --name=postgres
+         environment:
+         - POSTGRES_DB=rails_sample_app_test
+         - POSTGRES_USER=root
+         - POSTGRES_PASSWORD=secret
+         options:
+         - --name=postgres
     steps:
     - checkout
     - cache/pull:
