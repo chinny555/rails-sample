@@ -9,6 +9,13 @@ tasks:
     runner:
       containers:
       - image: ruby:3.2.2
+       - image: postgres:9.6
+        environment:
+        - POSTGRES_DB=rails_sample_app_test
+        - POSTGRES_USER=root
+        - POSTGRES_PASSWORD=secret
+        options:
+        - --name=postgres
     steps:
     - checkout
     - cache/pull:
@@ -16,13 +23,12 @@ tasks:
 
     - commands:
       - gem --version && ruby --version
-      - gem install bundler:2.4.10
+      - gem install bundler:2.4.20
       - bundle --version
 
     - run: bundle install --path vendor/bundle || bundle check
 
     - commands:
-      - rails server
       - docker run -p 3000:3000 my-ruby-app
     - cache/push:
         key: bundle-{{ checksum "Gemfile.lock" }}
