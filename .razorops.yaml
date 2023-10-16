@@ -3,12 +3,18 @@ tasks:
     steps:
     - checkout
     - docker/build:
-        image: my-ruby-app:latest
+        tags: my-ruby-app:latest
 
     runner:
       containers:
-      - image: ruby:3.2.2
-      
+      - image: uby:3.2.2
+      - image: postgres:9.6
+        environment:
+        - POSTGRES_DB=my-ruby-app-test
+        - POSTGRES_USER=root
+        - POSTGRES_PASSWORD=postgres
+        options:
+        - --name=postgres
     steps:
     - checkout
     - cache/pull:
@@ -16,7 +22,7 @@ tasks:
 
     - commands:
       - gem --version && ruby --version
-      - gem install bundler:2.4.20
+      - gem install bundler:2.3.20
       - bundle --version
 
     - run: bundle install --path vendor/bundle || bundle check
@@ -33,3 +39,5 @@ tasks:
     - reports/junit:
       - rspec.xml
 
+    - run: docker logs postgres
+      when: on_fail
