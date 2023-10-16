@@ -4,7 +4,8 @@ tasks:
     - checkout
     - docker/build:
         tags: my-ruby-app:latest
-
+        
+  rspec:
     runner:
       containers:
       - image: uby:3.2.2
