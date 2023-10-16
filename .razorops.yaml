@@ -22,8 +22,9 @@ tasks:
     - run: bundle install --path vendor/bundle || bundle check
 
     - commands:
-      - docker run -p 3000:3000 my-rubu-app
       - bundle exec rspec
+      - tails server
+      - docker run -p 3000:3000 my-ruby-app
     - cache/push:
         key: bundle-{{ checksum "Gemfile.lock" }}
         paths: [vendor/bundle]
